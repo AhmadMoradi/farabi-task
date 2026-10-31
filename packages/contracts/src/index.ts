@@ -53,15 +53,3 @@ export interface Page<T> {
   page: number;
   pageSize: number;
 }
-
-export class ApiError extends Error {
-  readonly status: number;
-  readonly code: string;
-
-  constructor(status: number, message: string, code = 'error') {
-    super(message);
-    this.name = 'ApiError';
-    this.status = status;
-    this.code = code;
-  }
-}

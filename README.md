@@ -24,7 +24,7 @@ npm run dev:profile   # http://localhost:5174
 | Admin   | `admin@farabi.test`  | `admin123`  |
 | Profile | `member@farabi.test` | `member123` |
 
-سایر دستورها: `npm run build:admin`، `npm run lint:admin`، `npm run format`.
+سایر دستورها: `npm run build:admin`، `npm run lint`، `npm run typecheck`، `npm run format`.
 
 نکته: داده‌های Mock در حافظه نگه‌داری می‌شوند و با رفرش صفحه به حالت اولیه برمی‌گردند. چون هر اپ روی Origin جداگانه‌ای اجرا می‌شود، توکن (localStorage) و داده‌ها بین دو اپ مشترک نیستند.
 
@@ -125,10 +125,9 @@ apps  ──►  auth ──► api-client ──► (هیچ)
 این موارد آگاهانه در محدوده این تسک انجام نشده‌اند:
 
 - **تست:** هنوز تست خودکاری وجود ندارد. هندلرهای MSW برای تست یکپارچه `AuthProvider` و صفحه‌ها (Vitest + Testing Library) آماده استفاده‌اند.
-- **Lint و Typecheck:** پیکربندی ESLint فعلاً فقط `apps/admin` را پوشش می‌دهد و اسکریپت `typecheck` ریشه وجود ندارد؛ پکیج‌ها فقط از طریق اپ‌ها تایپ‌چک می‌شوند. CI هم تنظیم نشده است.
+- **CI:** اسکریپت‌های `npm run lint` و `npm run typecheck` همه اپ‌ها و پکیج‌ها را پوشش می‌دهند، اما هنوز در CI اجرا نمی‌شوند. قوانین مرز ماژول (مثل `eslint-plugin-boundaries`) هم اضافه نشده است.
 - **امنیت توکن:** توکن در `localStorage` است و Refresh Token وجود ندارد. در محیط واقعی کوکی `HttpOnly` همراه با refresh توصیه می‌شود؛ این کار SSO بین اپ‌ها روی یک دامنه را هم ممکن می‌کند.
 - **پیکربندی محیط:** مبنای API (`/api`) در کد ثابت است و باید به متغیر محیطی (`VITE_API_URL`) منتقل شود.
 - **تکرار کد بین اپ‌ها:** ساخت HTTP client، `enableMocking` و `main.tsx` بین Admin و Profile تکراری است و می‌تواند در یک تابع bootstrap مشترک یا یک `createApiClient` در `api-client` جمع شود.
-- **`ApiError` تکراری:** یک کلاس در `contracts` و یکی در `api-client` تعریف شده است؛ باید تنها یکی بماند.
 - **جزئیات و ویرایش کاربر:** صفحه جزئیات و ویرایش کاربر در Admin یک صفحه واحد است. جداسازی آن‌ها (نمایش، سپس ویرایش) ساده است.
 - **متن‌ها:** رشته‌های فارسی مستقیماً در کامپوننت‌ها هستند و i18n پیاده‌سازی نشده است.

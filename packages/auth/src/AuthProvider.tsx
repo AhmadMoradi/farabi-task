@@ -59,7 +59,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         queryClient.clear();
       },
     };
-  }, [authApi, queryClient, token, me.isPending, me.data]);
+  }, [queryClient, token, me.isPending, me.data]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

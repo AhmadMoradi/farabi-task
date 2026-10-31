@@ -12,7 +12,8 @@
     "dev:admin": "npm run dev --workspace=@farabitech/admin",
     "dev:profile": "npm run dev --workspace=@farabitech/profile",
     "build:admin": "npm run build --workspace=@farabitech/admin",
-    "lint:admin": "eslint apps/admin",
+    "lint": "eslint .",
+    "typecheck": "tsc -b apps/admin apps/profile",
     "format": "prettier . --write",
     "format:check": "prettier . --check",
     "test": "echo \"Error: no test specified\" && exit 1"
