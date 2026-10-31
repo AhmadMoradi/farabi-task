@@ -1,0 +1,14 @@
+{
+  "name": "@farabitech/mocks",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/handlers.ts",
+    "./browser": "./src/browser.ts"
+  },
+  "dependencies": {
+    "@farabitech/contracts": "*",
+    "msw": "^2.7.0"
+  }
+}
